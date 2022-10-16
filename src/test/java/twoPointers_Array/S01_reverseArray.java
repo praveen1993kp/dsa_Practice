@@ -1,9 +1,9 @@
-package bruteForce_Array;
+package twoPointers_Array;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-public class S05_reverseArray {
+public class S01_reverseArray {
 
 	/*
 	 * PROBLEM STATEMENT 
