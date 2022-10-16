@@ -68,8 +68,8 @@ public class S02_SortArrayByParity_905 {
 	public void positive() {
 		//Positive Test Data
 		int[] nums = {3,1,2,4};
-		int[] output = {2,4,3,1};
-		Assert.assertArrayEquals(sortArraysByParity_bruteForce2(nums), output);
+		int[] output = {2,4,1,3};
+		Assert.assertArrayEquals(sortArraysByParity_twoPointer(nums), output);
 	}
 		
 
@@ -78,7 +78,7 @@ public class S02_SortArrayByParity_905 {
 		//Edge Case Test Data
 		int[] nums = {2,4,6,8};
 		int[] output = {2,4,6,8};
-		Assert.assertArrayEquals(sortArraysByParity_bruteForce2(nums), output);
+		Assert.assertArrayEquals(sortArraysByParity_twoPointer(nums), output);
 	}
 	
 	@Test
@@ -86,7 +86,15 @@ public class S02_SortArrayByParity_905 {
 		//Negative Test Data
 		int[] nums = {3};
 		int[] output = {3};
-		Assert.assertArrayEquals(sortArraysByParity_bruteForce2(nums), output);
+		Assert.assertArrayEquals(sortArraysByParity_twoPointer(nums), output);
+	}
+	
+	@Test
+	public void edge2() {
+		//Negative Test Data
+		int[] nums = {3,2,3};
+		int[] output = {2,3,3};
+		Assert.assertArrayEquals(sortArraysByParity_twoPointer(nums), output);
 	}
 	
 	/*
@@ -105,16 +113,6 @@ public class S02_SortArrayByParity_905 {
 	 * 
 	 */	
 	
-	private int[] sortArraysByParity(int[] nums) {
-		int[] output = new int[nums.length];
-		int evenIndex = 0;
-		int oddIndex = nums.length-1;
-		for(int i=0;i<nums.length;i++) {
-			if(nums[i]%2==0) output[evenIndex++] = nums[i];
-			else output[oddIndex--] = nums[i];
-		}
-		return output;
-	}
 	
 	private int[] sortArraysByParity_bruteForce(int[] nums) {
 		for(int i=0;i<nums.length;i++) {
@@ -137,6 +135,17 @@ public class S02_SortArrayByParity_905 {
 		}
 		for(int i=0;i<nums.length;i++) {
 			if(nums[i]%2==1) output[index++] = nums[i];
+		}
+		return output;
+	}
+	
+	private int[] sortArraysByParity_twoPointer(int[] nums) {
+		int[] output = new int[nums.length];
+		int evenIndex = 0;
+		int oddIndex = nums.length-1;
+		for(int i=0;i<nums.length;i++) {
+			if(nums[i]%2==0) output[evenIndex++] = nums[i];
+			else output[oddIndex--] = nums[i];
 		}
 		return output;
 	}
