@@ -1,5 +1,7 @@
 package bruteForce_Array;
 
+import java.util.Arrays;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -64,7 +66,7 @@ public class P02_AddAdjacentArrayElements {
 		//Positive Test Data
 		int[] nums = {1,2,3,4,5};
 		int[] output = {3,5,7,9};
-		Assert.assertArrayEquals(addElements(nums), output);
+		Assert.assertArrayEquals(addElements_twoPointers(nums), output);
 	}
 	
 	@Test
@@ -72,7 +74,7 @@ public class P02_AddAdjacentArrayElements {
 		//Edge Case Test Data
 		int[] nums = {2,2};
 		int[] output = {4};
-		Assert.assertArrayEquals(addElements(nums), output);
+		Assert.assertArrayEquals(addElements_twoPointers(nums), output);
 	}
 	
 	@Test
@@ -80,7 +82,7 @@ public class P02_AddAdjacentArrayElements {
 		//Negative Test Data
 		int[] nums = {1,2,3,4,5};
 		int[] output = {3,5,7,9};
-		Assert.assertArrayEquals(addElements(nums), output);
+		Assert.assertArrayEquals(addElements_twoPointers(nums), output);
 	}
 	
 	/*
@@ -93,6 +95,14 @@ public class P02_AddAdjacentArrayElements {
 	 * 5. Add current element with previous element and store it in output[index]. Increment the index
 	 * 6. Return output array
 	 * 
+	 * 
+	 * --- Pseudo code - Two Pointers ---
+	 * 1. Create two pointers 
+	 * 2. left = 0, right = left+window-1
+	 * 3. Add elements till left<=right
+	 * 4. Update into the new array
+	 * 5. Return the output array
+	 * 
 	 */	
 	
 	private int[] addElements(int[] nums) {
@@ -102,6 +112,21 @@ public class P02_AddAdjacentArrayElements {
 		for(int i=1;i<nums.length;i++)
 			out[index] = nums[i-1] + nums[i];
 		return out;
+	}
+	
+	private int[] addElements_twoPointers(int[] nums) {
+		int window = 2;	
+		int index = 0,right=0,sum=0;
+		int[] output = new int[nums.length-window+1];
+		for(int i=0;i<nums.length-window+1;i++) {
+			right=i+window-1;
+			sum=0;
+			while(right>=i)
+				sum += nums[right--];
+			output[index++] = sum;
+		}
+		System.out.println(Arrays.toString(output));
+		return output;
 	}
 
 }
