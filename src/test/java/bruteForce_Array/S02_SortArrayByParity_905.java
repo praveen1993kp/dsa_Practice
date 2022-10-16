@@ -68,7 +68,7 @@ public class S02_SortArrayByParity_905 {
 	public void positive() {
 		//Positive Test Data
 		int[] nums = {3,1,2,4};
-		int[] output = {2,4,1,3};
+		int[] output = {4,2,1,3};
 		Assert.assertArrayEquals(sortArraysByParity_twoPointer(nums), output);
 	}
 		
@@ -111,6 +111,13 @@ public class S02_SortArrayByParity_905 {
 	 * 3. Continue the same process for all the elements
 	 * 4. Return the nums
 	 * 
+	 * --- Pseudo Code - Without additional space
+	 * 1. Create pointers left = 0 and right = nums.length-1
+	 * 2. Traverse while left<right
+	 * 3. If left is odd and right is even, swap
+	 * 4. If left is even, increment left
+	 * 5. If right is odd, decrement right
+	 * 
 	 */	
 	
 	
@@ -139,7 +146,7 @@ public class S02_SortArrayByParity_905 {
 		return output;
 	}
 	
-	private int[] sortArraysByParity_twoPointer(int[] nums) {
+	private int[] sortArraysByParity_twoPointe(int[] nums) {
 		int[] output = new int[nums.length];
 		int evenIndex = 0;
 		int oddIndex = nums.length-1;
@@ -148,5 +155,22 @@ public class S02_SortArrayByParity_905 {
 			else output[oddIndex--] = nums[i];
 		}
 		return output;
+	}
+	
+	private int[] sortArraysByParity_twoPointer(int[] nums) {
+		int left = 0,right=nums.length-1,temp=0;
+		while(left<right) {
+			if(nums[left]%2!=0 && nums[right]%2==0) {
+				temp = nums[left];
+				nums[left++] = nums[right];
+				nums[right--] = temp;
+			}
+			//if can also be used for below two steps
+			while(left<right && nums[left]%2==0) left++;
+			while(left<right && nums[right]%2!=0) right--;
+			
+		}
+		return nums;
+		
 	}
 }
