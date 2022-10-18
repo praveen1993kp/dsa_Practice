@@ -2,6 +2,9 @@ package twoPointers_Array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -71,7 +74,7 @@ public class P04_IntersectionOfTwoArrays_349 {
 		int[] nums1 = {1,2,2,1};
 		int[] nums2 = {2,2};
 		int[] output = {2};
-		Assert.assertArrayEquals(insersectionOfArrays(nums1,nums2), output);
+		Assert.assertArrayEquals(insersectionOfArrays_UsingSet(nums1,nums2), output);
 	}
 	
 	@Test
@@ -80,7 +83,7 @@ public class P04_IntersectionOfTwoArrays_349 {
 		int[] nums1 = {1,1};
 		int[] nums2 = {2,2};
 		int[] output = {};
-		Assert.assertArrayEquals(insersectionOfArrays(nums1,nums2), output);
+		Assert.assertArrayEquals(insersectionOfArrays_UsingSet(nums1,nums2), output);
 	}
 	
 	@Test
@@ -89,7 +92,16 @@ public class P04_IntersectionOfTwoArrays_349 {
 		int[] nums1 = {1};
 		int[] nums2 = {1,1,1,1,1,1};
 		int[] output = {1};
-		Assert.assertArrayEquals(insersectionOfArrays(nums1,nums2), output);
+		Assert.assertArrayEquals(insersectionOfArrays_UsingSet(nums1,nums2), output);
+	}
+	
+	@Test
+	public void example4() {
+		//Negative Test Data
+		int[] nums1 = {4,9,5};
+		int[] nums2 = {9,4,9,8,4};
+		int[] output = {4,9};
+		Assert.assertArrayEquals(insersectionOfArrays_UsingSet(nums1,nums2), output);
 	}
 	
 	/*
@@ -132,8 +144,28 @@ public class P04_IntersectionOfTwoArrays_349 {
         }
         return output;
 	}
-
-	public void method1() {
-		
+	
+	private int[] insersectionOfArrays_UsingSet(int[] nums1, int[] nums2) {
+		if(nums1.length==0 || nums2.length==0) return new int[0];
+		Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        Set<Integer> al = new HashSet<>();
+        int left=0,right=0;
+        while(left<nums1.length && right<nums2.length){
+        	if(nums2[right] < nums1[left]) right++;
+        	else {
+        		if(nums1[left] == nums2[right]) {
+        			al.add(nums1[left]);
+        		}		
+        		left++;
+        	}
+        }
+        int[] output = new int[al.size()];
+        Iterator<Integer> itr = al.iterator();
+        int i=0;
+        while(itr.hasNext()) {
+        	output[i++] = itr.next();
+        }
+        return output;
 	}
 }
