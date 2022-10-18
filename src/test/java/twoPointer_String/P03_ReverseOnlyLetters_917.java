@@ -120,20 +120,20 @@ public class P03_ReverseOnlyLetters_917 {
 	 */	
 	
 	private String reverseLetters(String s) {
-		int left=0,right=s.length()-1;
-        char[] ch = s.toCharArray();
-        char temp = '0';
-        while(left<right){
-            if(Character.isAlphabetic(ch[left]) && Character.isAlphabetic(ch[right])){
-                temp = ch[left];
-                ch[left++] = ch[right];
-                ch[right--] = temp;
+		int left=0,right=s.length()-1; //O(1)
+        char[] ch = s.toCharArray();  //O(n)
+        char temp = '0';  //O(1)
+        while(left<right){   //O(n/2)
+            if(Character.isAlphabetic(ch[left]) && Character.isAlphabetic(ch[right])){  //O(1)
+                temp = ch[left];   //O(1)
+                ch[left++] = ch[right];   //O(1)
+                ch[right--] = temp;   //O(1)
             } else{
-                if(!Character.isAlphabetic(ch[left])) left++;
-                else right--;
+                if(!Character.isAlphabetic(ch[left])) left++;  //O(1)
+                else right--;    //O(1)
             }        
         }
-        return String.valueOf(ch);
+        return String.valueOf(ch);   //?;
 	}
 
 	
