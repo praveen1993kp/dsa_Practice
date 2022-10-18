@@ -124,23 +124,23 @@ public class P02_ReversePrefixOfWord_2000 {
 	 */	
 	
 	public String reversePrefixWord(String word,char ch) {
-		int index=0;
-        char[] charArray = word.toCharArray();
-        while(index<charArray.length){
-            if(charArray[index]==ch) 
-                break;
-            else index++;
+		int index=0;                                         //O(1)
+        char[] charArray = word.toCharArray();				 //O(n)
+        while(index<charArray.length){                       //O(n)
+            if(charArray[index]==ch)                         //O(1)
+                break;										 //O(1)
+            else index++;									 //O(1)
         }
         //Index of first occurrence found from above steps
-        int left=0,right=index;
+        int left=0,right=index;								 //O(1)
         //If the index falls at 0th index or not available, returning given input itself as no swap is required
-        if(right==0 || right>=charArray.length) return word;
-        char temp = '0';
-        while(left<right){
-            temp = charArray[left];
-            charArray[left++] = charArray[right];
-            charArray[right--] = temp;
+        if(right==0 || right>=charArray.length) return word; //O(1)
+        char temp = '0';									 //O(1)
+        while(left<right){									 //O(m) m = index-0
+            temp = charArray[left];							 //O(1)
+            charArray[left++] = charArray[right];			 //O(1)
+            charArray[right--] = temp;						 //O(1)
         }
-        return String.valueOf(charArray);
+        return String.valueOf(charArray);					 //?
 	}
 }
