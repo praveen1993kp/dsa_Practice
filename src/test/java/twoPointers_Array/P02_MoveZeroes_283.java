@@ -89,14 +89,23 @@ public class P02_MoveZeroes_283 {
 		Assert.assertArrayEquals(moveZeroes(nums), output);
 	}
 	
+	@Test
+	public void edge2() {
+		//Negative Test Data
+		int[] nums = {1,0,1};
+		int[] output = {1,1,0};
+		Assert.assertArrayEquals(moveZeroes(nums), output);
+	}
+	
 	/*
 	 * --- Pseudo Code ---
 	 * 
 	 * 1. Create pointers left = 0 and right = 1
 	 * 2. Traverse till right<nums.length
 	 * 3. If nums[left] == 0, swap and increment left
-	 * 4. Increment right by default
-	 * 5. Return nums
+	 * 4. Else increment left alone
+	 * 5. Increment right by default
+	 * 6. Return nums
 	 * 
 	 */	
 	
@@ -104,11 +113,12 @@ public class P02_MoveZeroes_283 {
 		int left=0,right=1,temp=0;
 		while(right<nums.length) {
 			if(nums[left]==0) {
-				while(right<nums.length-1 && nums[right]==0) right++;
-				temp = nums[left];
-				nums[left++] = nums[right];
-				nums[right] = temp;
-			}
+				if(nums[right]!=0) {
+					temp = nums[left];
+					nums[left++] = nums[right];
+					nums[right] = temp;
+				}	
+			} else left++;
 			right++;
 		}
 		return nums;
