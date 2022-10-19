@@ -71,7 +71,7 @@ public class P07_MergeSortedArray_88 {
 		int m = 3;
 		int n = 3;
 		int[] output = {1,2,2,3,5,6};
-		Assert.assertArrayEquals(mergedSortedArray(nums1,nums2,m,n), output);
+		Assert.assertArrayEquals(mergedSortedArray_method3(nums1,nums2,m,n), output);
 	}
 	
 	@Test
@@ -82,7 +82,7 @@ public class P07_MergeSortedArray_88 {
 		int m = 1;
 		int n = 0;
 		int[] output = {0};
-		Assert.assertArrayEquals(mergedSortedArray(nums1,nums2,m,n), output);
+		Assert.assertArrayEquals(mergedSortedArray_method3(nums1,nums2,m,n), output);
 	}
 	
 	@Test
@@ -93,7 +93,7 @@ public class P07_MergeSortedArray_88 {
 		int m = 0;
 		int n = 1;
 		int[] output = {1};
-		Assert.assertArrayEquals(mergedSortedArray(nums1,nums2,m,n), output);
+		Assert.assertArrayEquals(mergedSortedArray_method3(nums1,nums2,m,n), output);
 	}
 	
 	@Test
@@ -104,7 +104,7 @@ public class P07_MergeSortedArray_88 {
 		int m = 4;
 		int n = 2;
 		int[] output = {0,0,0,0,0,0};
-		Assert.assertArrayEquals(mergedSortedArray(nums1,nums2,m,n), output);
+		Assert.assertArrayEquals(mergedSortedArray_method3(nums1,nums2,m,n), output);
 	}
 	
 	@Test
@@ -115,7 +115,7 @@ public class P07_MergeSortedArray_88 {
 		int m = 3;
 		int n = 3;
 		int[] output = {-3,-2,-1,0,1,2};
-		Assert.assertArrayEquals(mergedSortedArray(nums1,nums2,m,n), output);
+		Assert.assertArrayEquals(mergedSortedArray_method3(nums1,nums2,m,n), output);
 	}
 
 	
@@ -169,4 +169,26 @@ public class P07_MergeSortedArray_88 {
 		return nums1;
 	}
 	
+	private int[] mergedSortedArray_method3(int[] nums1, int[] nums2, int m, int n) {
+		int left = m-1, right= n-1, newindex = nums1.length-1;
+		
+		while(left>=0 || right>=0) {
+			if(right>=0 && left>=0) {
+				if(nums1[left] <= nums2[right]) {
+					nums1[newindex--] = nums2[right--];
+				} else {
+					nums1[newindex--] = nums1[left--];
+				}
+			}	
+			if(right<0) nums1[newindex--] = nums1[left--];
+			else if(left < 0) nums1[newindex--] = nums2[right--];
+				
+		} return nums1;
+				
+	}
+
 }
+	
+	
+	
+
