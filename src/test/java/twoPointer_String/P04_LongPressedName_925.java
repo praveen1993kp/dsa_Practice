@@ -168,8 +168,7 @@ public class P04_LongPressedName_925 {
                 if(typed.charAt(p2)==tempVal) p2++;
                 else return false;
             }     
-            }     
-                
+            }           
         }
         return true;
 	}
