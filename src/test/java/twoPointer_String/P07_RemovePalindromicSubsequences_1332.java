@@ -104,16 +104,22 @@ public class P07_RemovePalindromicSubsequences_1332 {
 	 * Since subsequence to be removed, when we remove either all a's or b's, the string becomes palindrome
 	 * 
 	 * 1. If the given string is empty, no operation is required and hence 0
-	 * 2. If the given string is a palindrome, 1 operation is required
-	 * 3. If the given string is not a palindrome, 2 operations are required
+	 * 2. If the given string is a palindrome, return 1
+	 * 3. If the given string is not a palindrome, return 2
 	 * 
 	 */	
 	
 	private int removePalindromicSubSequences(String s) {
+		int start = 0, end = s.length()-1;
 		if(s.length()==0) return 0;
-        StringBuilder sb = new StringBuilder();
-        sb.append(s);
-        return sb.reverse().toString().equals(s) ? 1 : 2;
+		while(start<end) {
+			if(s.charAt(start)!=s.charAt(end)) {
+				return 2;
+			}
+			start++;
+			end--;
+		}
+		return 1;
 	}
 	
 }
