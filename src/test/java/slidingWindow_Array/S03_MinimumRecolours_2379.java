@@ -118,6 +118,10 @@ public class S03_MinimumRecolours_2379 {
 	 * 8. Find the min between whiteBlocks and minBlock
 	 * 9. Return minBlock
 	 * 
+	 * Method 2:
+	 * 
+	 * 1. When single pointer is used, use p1-k when left needs to be used
+	 * 
 	 */	
 	
 	private int minRecolours(String blocks, int k) {
@@ -130,6 +134,22 @@ public class S03_MinimumRecolours_2379 {
         while(right<blocks.length()){
             if(blocks.charAt(right++)=='W') whiteBlocks++;
             if(blocks.charAt(left++)=='W') whiteBlocks--;
+            minBlock = Math.min(minBlock,whiteBlocks);
+        }
+        return minBlock;
+	}
+	
+	private int minRecolours_UsingOnePointer(String blocks, int k) {
+		int p1=0;
+        int whiteBlocks=0,minBlock = Integer.MAX_VALUE;
+        while(p1<k){
+            if(blocks.charAt(p1++)=='W') whiteBlocks++;
+        }
+        minBlock = whiteBlocks;
+        while(p1<blocks.length()){
+            if(blocks.charAt(p1)=='W') whiteBlocks++;
+            if(blocks.charAt(p1-k)=='W') whiteBlocks--;
+            p1++;
             minBlock = Math.min(minBlock,whiteBlocks);
         }
         return minBlock;
