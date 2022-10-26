@@ -133,6 +133,7 @@ public class P02_SubArrayProductLessthanK_713 {
 	 */	
 	
 	private int SubArrayProductLessThanK(int[] nums, int k) {
+		if(k<=1) return 0;
 		int counter=0,left=0,right=0,prod =1 ;
         while(right<nums.length){
                 prod *= nums[right];
