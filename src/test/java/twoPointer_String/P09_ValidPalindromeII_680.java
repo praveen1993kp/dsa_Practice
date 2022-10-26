@@ -86,6 +86,30 @@ public class P09_ValidPalindromeII_680 {
 		Assert.assertEquals(ValidPalindromeII(s), output);
 	}
 	
+	@Test
+	public void example4() {
+		//Negative Test Data
+		String s = "mraacm";
+		boolean output = false;
+		Assert.assertEquals(ValidPalindromeII(s), output);
+	}
+	
+	@Test
+	public void example5() {
+		//Negative Test Data
+		String s = "abcddrcba";
+		boolean output = true;
+		Assert.assertEquals(ValidPalindromeII(s), output);
+	}
+	
+	@Test
+	public void example6() {
+		//Negative Test Data
+		String s = "abcrddcba";
+		boolean output = true;
+		Assert.assertEquals(ValidPalindromeII(s), output);
+	}
+	
 	/*
 	 * --- Pseudo Code ---
 	 * --Two Pointers - Opposite Direction---
@@ -101,25 +125,23 @@ public class P09_ValidPalindromeII_680 {
 	
 	private boolean ValidPalindromeII(String s) {
 		int left=0,right=s.length()-1;
-		while(left<right) {
-			if(s.charAt(left)==s.charAt(right)) {
-				left++;
-				right--;
-			} else {
-				return (isPalindrome(s,left+1,right) || isPalindrome(s,left,right-1));
-			}
-		}
-		return false;
-		
+        while(left<right){
+            if(s.charAt(left)==s.charAt(right)){
+                left++;
+                right--;
+            } else 
+                return (isPalindrome(s,left+1,right) || isPalindrome(s,left,right-1));
+        }
+        return true;	
 	}
 	
 	private boolean isPalindrome(String s, int p1, int p2) {
-		while(p1<p2) {
-			if(s.charAt(p1)!=s.charAt(p2))
-				return false;
-			p1++;
-			p2--;
-		}
-		return true;
+		while(p1<p2){
+            if(s.charAt(p1) != s.charAt(p2))
+                return false;
+            p1++;
+            p2--;
+        }
+        return true;
 	}
 }
