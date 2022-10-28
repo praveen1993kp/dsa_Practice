@@ -103,6 +103,14 @@ public class P07_RemovePalindromicSubsequences_1332 {
 	 * aaaaa and bbbb are also palindromes
 	 * Since subsequence to be removed, when we remove either all a's or b's, the string becomes palindrome
 	 * 
+	 * -- Brute Force --
+	 * 
+	 * 1. Check if the given string is palindrome
+	 * 2. If palindrome, return 1
+	 * 3. Else return 2
+	 * 
+	 * -- Two Pointer --
+	 * 
 	 * 1. If the given string is empty, no operation is required and hence 0
 	 * 2. If the given string is a palindrome, return 1
 	 * 3. If the given string is not a palindrome, return 2
