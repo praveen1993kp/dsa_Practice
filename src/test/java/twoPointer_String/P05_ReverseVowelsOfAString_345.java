@@ -67,7 +67,7 @@ public class P05_ReverseVowelsOfAString_345 {
 		//Positive Test Data
 		String s = "hello";
 		String output = "holle";
-		Assert.assertEquals(reverseVowels(s), output);
+		Assert.assertEquals(reverseVowels_bruteForce(s), output);
 	}
 	
 	@Test
@@ -75,7 +75,7 @@ public class P05_ReverseVowelsOfAString_345 {
 		//Positive Test Data
 		String s = "aeiou";
 		String output = "uoiea";
-		Assert.assertEquals(reverseVowels(s), output);
+		Assert.assertEquals(reverseVowels_bruteForce(s), output);
 	}
 	
 	@Test
@@ -83,7 +83,7 @@ public class P05_ReverseVowelsOfAString_345 {
 		//Positive Test Data
 		String s = "TeStInG";
 		String output = "TIStenG";
-		Assert.assertEquals(reverseVowels(s), output);
+		Assert.assertEquals(reverseVowels_bruteForce(s), output);
 	}
 	
 	@Test
@@ -91,7 +91,7 @@ public class P05_ReverseVowelsOfAString_345 {
 		//Positive Test Data
 		String s = "!@12A= e[]";
 		String output = "!@12e= A[]";
-		Assert.assertEquals(reverseVowels(s), output);
+		Assert.assertEquals(reverseVowels_bruteForce(s), output);
 	}
 	
 	@Test
@@ -99,7 +99,7 @@ public class P05_ReverseVowelsOfAString_345 {
 		//Negative Test Data
 		String s = "cysts";
 		String output = "cysts";
-		Assert.assertEquals(reverseVowels(s), output);
+		Assert.assertEquals(reverseVowels_bruteForce(s), output);
 	}
 	
 	@Test
@@ -107,7 +107,7 @@ public class P05_ReverseVowelsOfAString_345 {
 		//Edge Case Test Data
 		String s = "S";
 		String output = "S";
-		Assert.assertEquals(reverseVowels(s), output);
+		Assert.assertEquals(reverseVowels_bruteForce(s), output);
 	}
 	
 	@Test
@@ -115,13 +115,21 @@ public class P05_ReverseVowelsOfAString_345 {
 		//Edge Case Test Data
 		String s = "A";
 		String output = "A";
-		Assert.assertEquals(reverseVowels(s), output);
+		Assert.assertEquals(reverseVowels_bruteForce(s), output);
 	}
 
 
 	
 	/*
 	 * --- Pseudo Code ---
+	 * 
+	 * -- Brute Force --
+	 * 1. Create a string revVowelsfor output
+	 * 2. Start from the end of given string. If vowel found, append. Continue till i>=0
+	 * 3. Start from the start of given string. If vowel found, append first char from revVowels
+	 * 4. Return given string
+	 * 
+	 * --Two Pointer--
 	 * 
 	 * Create two pointers left=0 and right= s.length()-1
 	 * When the character in left is not vowel, increment left
@@ -130,6 +138,23 @@ public class P05_ReverseVowelsOfAString_345 {
 	 * Continue till left<right
 	 * 
 	 */	
+	
+	private String reverseVowels_bruteForce(String s) {
+		String revVowels = "";
+		for(int i=s.length()-1;i>=0;i--) {
+			if(isVowel(s.charAt(i))) revVowels += s.charAt(i);
+		}
+		
+		char ch[] = s.toCharArray();
+		int index=0;
+		for(int i=0;i<s.length();i++) {
+			if(isVowel(ch[i])) ch[i] = revVowels.charAt(index++);
+		}
+		
+		return String.valueOf(ch);
+	}
+	
+	
 	
 	private String reverseVowels(String s) {
 		int left=0,right=s.length()-1;
