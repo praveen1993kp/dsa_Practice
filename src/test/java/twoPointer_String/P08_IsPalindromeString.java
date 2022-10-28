@@ -89,12 +89,30 @@ public class P08_IsPalindromeString {
 	/*
 	 * --- Pseudo Code ---
 	 * 
+	 * -- Brute Force --
+	 * 
+	 * 1. Create variable revWord
+	 * 2. Start from the end of given string and traverse till pointer >=0
+	 * 3. If the reverse of string and the current string are same, return true
+	 * 4. Else return false
+	 * 
+	 * -- Two Pointer --
+	 * 
 	 * 1. Create two pointers p1=0 and p2=s.length()-1
 	 * 2. Check if both the values are same.
 	 * 3. If not matching, return false
 	 * 4. Return true by default
 	 * 
 	 */	
+	
+	
+	private boolean isPalindrome_bruteForce(String s) {
+		String revWord = "";
+		for(int i=s.length()-1;i>=0;i--) {
+			revWord += s.charAt(i);
+		}
+		return revWord.equals(s) ? true : false;
+	}
 	
 	private boolean isPalindrome_TwoPointers(String s) {
 		int left=0,right=s.length()-1;
