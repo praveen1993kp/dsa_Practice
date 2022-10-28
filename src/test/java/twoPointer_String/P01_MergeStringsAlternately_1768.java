@@ -97,6 +97,17 @@ public class P01_MergeStringsAlternately_1768 {
 	/*
 	 * --- Pseudo Code ---
 	 * 
+	 * --Brute Force--
+	 * 
+	 * 1. If word1 is null or empty string, return word2
+	 * 2. If word2 is null or empty string, return word1
+	 * 3. Traverse for i<word1 length or j<word2 length
+	 * 4. If i<word1 length, append the character to output and increment i
+	 * 5. If j<word2 length, append the character to output and increment j
+	 * 6. Return output
+	 * 
+	 * -- Two Pointer --
+	 * 
 	 * 1. Create two pointers left=0 and right = 0
 	 * 2. Create a string builder
 	 * 3. Traverse till left<word1.length() or right<word2.length()
@@ -106,6 +117,17 @@ public class P01_MergeStringsAlternately_1768 {
 	 * 
 	 * 
 	 */	
+	
+	private String mergeStrings_bruteForce(String word1, String word2) {
+		if(word1==null || word1.length()==0) return word2;
+		if(word2==null || word2.length()==0) return word1;
+		String output = "";
+		for(int i=0, j=0;i<word1.length() || j<word2.length();) {
+			if(i<word1.length()) output += word1.charAt(i++);
+			if(j<word2.length()) output += word2.charAt(j++);	
+		}
+		return output;
+	}
 	
 	private String mergeStrings(String word1, String word2) {
 		int left = 0,right=0;
