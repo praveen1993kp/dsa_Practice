@@ -112,6 +112,16 @@ public class P02_ReversePrefixOfWord_2000 {
 	/*
 	 * --- Pseudo Code ---
 	 * 
+	 * -- Brute Force --
+	 * 
+	 * 1. Find the first index where the element is occurred
+	 * 2. Start from the index and traverse backwards till >=0
+	 * 3. Append to the string revString
+	 * 4. Return revString + substring of index+1 till word.length()
+	 * 
+	 * 
+	 * -- Two Pointer --
+	 * 
 	 * 1. Convert given word into charArray
 	 * 2. Using a pointer, find the first index where ch occurs
 	 * 3. If the first occurrence happens at 0th index or doesn't happen at all,
@@ -122,6 +132,22 @@ public class P02_ReversePrefixOfWord_2000 {
 	 * 7. return the character array as String
 	 * 
 	 */	
+	
+	public String reversePrefixWord_bruteForce(String word,char ch) {
+		int index = 0;
+		for(int i=0;i<word.length();i++) {
+			if(word.charAt(i)==ch) {
+				index = i;
+				break;
+			}
+		}
+		String revWord = "";
+		for(int i=index;i>=0;i--) {
+			revWord += word.charAt(i);
+		}
+		
+		return revWord + word.substring(index,word.length());
+	}
 	
 	public String reversePrefixWord(String word,char ch) {
 		int index=0;                                         //O(1)
