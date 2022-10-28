@@ -108,6 +108,18 @@ public class P03_ReverseOnlyLetters_917 {
 	
 	/*
 	 * --- Pseudo Code ---
+	 * 
+	 * -- Brute Force --
+	 * 
+	 * 1. Convert the input word into charArray
+	 * 2. Start from the end of string and reverse only letters and store in a variable
+	 * 3. Convert reversedLetters into charArray
+	 * 4. Traverse again from the start of input letter till the end
+	 * 5. When character is found, add the first character from reversedLetters Array and so on
+	 * 6. Return the input character array as string
+	 * 
+	 * -- Two Pointers --
+	 * 
 	 * 1. Create two pointers at extreme ends
 	 * 2. Convert given word into character array
 	 * 3. Traverse while left<right
@@ -117,7 +129,25 @@ public class P03_ReverseOnlyLetters_917 {
 	 * 6. When right is not character, decrement right
 	 * 7. Return the value of character array
 	 * 
-	 */	
+	 */
+	
+	private String reverseLetters_bruteForce(String s) {
+		String output = "";
+		char[] str = s.toCharArray();
+		for(int i=s.length()-1;i>=0;i--) {
+			if(Character.isAlphabetic(str[i])) output += str[i];
+		}
+		
+		int outputIndex=0;
+		char[] reversedLetters = output.toCharArray();
+		
+		for(int i=0;i<s.length();i++) {
+			if(Character.isAlphabetic(str[i])) {
+				str[i] = reversedLetters[outputIndex++];
+			}				
+		}
+        return String.valueOf(str);   //?;
+	}
 	
 	private String reverseLetters(String s) {
 		int left=0,right=s.length()-1; //O(1)
