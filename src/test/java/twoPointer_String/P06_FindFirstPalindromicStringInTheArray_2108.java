@@ -68,7 +68,7 @@ public class P06_FindFirstPalindromicStringInTheArray_2108 {
 		//Positive Test Data
 		String words[] = {"abc","car","ada","racecar","cool"};
 		String output = "ada";
-		Assert.assertEquals(findFirstPalindromeString(words), output);
+		Assert.assertEquals(findFirstPalindromeString_bruteForce(words), output);
 	}
 	
 	@Test
@@ -76,7 +76,7 @@ public class P06_FindFirstPalindromicStringInTheArray_2108 {
 		//Negative Case Test Data
 		String words[] = {"abc","car","","cool","racecar"};
 		String output = "racecar";
-		Assert.assertEquals(findFirstPalindromeString(words), output);
+		Assert.assertEquals(findFirstPalindromeString_bruteForce(words), output);
 	}
 	
 	@Test
@@ -84,7 +84,7 @@ public class P06_FindFirstPalindromicStringInTheArray_2108 {
 		//Negative Case Test Data
 		String words[] = {"notapalindrome","test"};
 		String output = "";
-		Assert.assertEquals(findFirstPalindromeString(words), output);
+		Assert.assertEquals(findFirstPalindromeString_bruteForce(words), output);
 	}
 	
 	@Test
@@ -92,13 +92,22 @@ public class P06_FindFirstPalindromicStringInTheArray_2108 {
 		//Negative Test Data
 		String words[] = {"racecar","ada","ssddss"};
 		String output = "racecar";
-		Assert.assertEquals(findFirstPalindromeString(words), output);
+		Assert.assertEquals(findFirstPalindromeString_bruteForce(words), output);
 	}
 	
 	
 
 	/*
 	 * --- Pseudo Code ---
+	 * 
+	 * -- Brute Force --
+	 * 
+	 * Edge Case: When the input String is empty, skip the validation. If no other match found, it will adjust itself to return ""
+	 * 1. Traverse through the given array
+	 * 2. For each word, if the word and reverse are same, return the word
+	 * 3. If nothing found, return empty string
+	 * 
+	 * -- Two Pointer --
 	 * 
 	 * 1. Traverse through the array
 	 * 2. Create pointers left=0 and right=words[i].length()-1
@@ -107,6 +116,18 @@ public class P06_FindFirstPalindromicStringInTheArray_2108 {
 	 * 5. Else increment left and decrement right
 	 * 
 	 */	
+	
+	private String findFirstPalindromeString_bruteForce(String[] words) {
+		for(int i=0;i<words.length;i++) {
+			String revWord = "";
+			if(words[i]=="") continue;
+			for(int j=words[i].length()-1;j>=0;j--) {
+				revWord += words[i].charAt(j);
+			}
+			if(words[i].equals(revWord)) return words[i];		
+		}
+        return "";
+	}
 	
 	private String findFirstPalindromeString(String[] words) {
 		int left=0,right=0;
