@@ -1,7 +1,12 @@
 package bruteForce_Array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -74,7 +79,7 @@ public class S01_twoSum_1 {
 		int[] nums = {1,3,5,6,7,9};
 		int target = 15;
 		int[] expectedOutput = {3,5};
-		Assert.assertArrayEquals(twoSum(nums,target), expectedOutput);
+		Assert.assertArrayEquals(twoSum_hashMap(nums,target), expectedOutput);
 	}
 	
 	@Test
@@ -83,7 +88,7 @@ public class S01_twoSum_1 {
 		int[] nums = {1};
 		int target = 15;
 		int[] expectedOutput = new int[2];
-		Assert.assertArrayEquals(twoSum(nums,target), expectedOutput);
+		Assert.assertArrayEquals(twoSum_hashMap(nums,target), expectedOutput);
 	}
 	
 	@Test
@@ -91,8 +96,17 @@ public class S01_twoSum_1 {
 		//Negative Test Data
 		int[] nums = {1,2,5,6,7,9};
 		int target = 8;
-		int[] expectedOutput = {0,4};
-		Assert.assertArrayEquals(twoSum(nums,target), expectedOutput);
+		int[] expectedOutput = {1,3};
+		Assert.assertArrayEquals(twoSum_hashMap(nums,target), expectedOutput);
+	}
+	
+	@Test
+	public void edge2() {
+		//Negative Test Data
+		int[] nums = {3,2,4};
+		int target = 6;
+		int[] expectedOutput = {1,2};
+		Assert.assertArrayEquals(twoSum_hashMap(nums,target), expectedOutput);
 	}
 	
 	/*
@@ -102,6 +116,14 @@ public class S01_twoSum_1 {
 	 * 3. for each element in outer loop, if the sum of two loop elements matches the target, get the indices
 	 * 4. Store the indices in a two dimensional array
 	 * 5. Exit the loops
+	 * 
+	 * -- Using Map --
+	 * 
+	 * 1. Create map with Integer,Integer type
+	 * 2. Traverse through the map and check, for each nums[i], if target-nums[i] is available in hashmap
+	 * 3. If available, return the index of nums[i] and target-nums[i]
+	 * 4. Else put the current nums[i] as key and i as value
+	 * 5. Return the output array
 	 */	
 	
 	public int[] twoSum(int[] nums, int target) {
@@ -111,6 +133,24 @@ public class S01_twoSum_1 {
 					return new int[] {i,j};
 				}
 			}
+		}
+		return new int[2];
+		
+		
+	}
+	
+	public int[] twoSum_hashMap(int[] nums, int target) {
+		Map<Integer,Integer> hMap = new HashMap<>();
+		int output[] = new int[2];
+		for(int i=0;i<nums.length;i++) {
+			if(hMap.containsKey(target-nums[i])) {
+				output[0] = hMap.get(target-nums[i]);
+				output[1] = i;
+				return output;
+			} else {
+				hMap.put(nums[i], i);
+			}
+				
 		}
 		return new int[2];
 		
