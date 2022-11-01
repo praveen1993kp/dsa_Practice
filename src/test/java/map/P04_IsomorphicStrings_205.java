@@ -111,6 +111,14 @@ public class P04_IsomorphicStrings_205 {
 	/*
 	 * --- Pseudo Code ---
 	 * 
+	 * 1. Create two maps
+	 * 2. For each character in s and t, add into hMap1 as s.charAt(i) and t.charAt(i) 
+	 * 3. Repeat the same process but add elements by swapping key and pair of previous map
+	 * 4. Continue steps 2-3 only when both the keys are not available in respective hashmap
+	 * 5. When condition 4 is not met, if the values in both maps are not equal to current occuring value, return false
+	 * 6. Return true by default
+	 * 
+	 * 
 	 */	
 	
 	private boolean isIsomorphic(String s, String t) {
