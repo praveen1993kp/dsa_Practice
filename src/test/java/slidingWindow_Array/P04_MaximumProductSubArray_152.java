@@ -65,7 +65,7 @@ public class P04_MaximumProductSubArray_152 {
 		//Positive Test Data
 		int[] nums = {2,3,5,-1,3,5,7};
 		int output = 105;
-		Assert.assertEquals(maxProduct_slidingWindow(nums), output);
+		Assert.assertEquals(maxProduct_Kandane(nums), output);
 	}
 	
 	@Test
@@ -73,7 +73,7 @@ public class P04_MaximumProductSubArray_152 {
 		//Edge Case Test Data
 		int[] nums = {2,3,-2,4};
 		int output = 6;
-		Assert.assertEquals(maxProduct_slidingWindow(nums), output);
+		Assert.assertEquals(maxProduct_Kandane(nums), output);
 	}
 	
 	@Test
@@ -81,7 +81,7 @@ public class P04_MaximumProductSubArray_152 {
 		//Negative Test Data
 		int[] nums = {-2};
 		int output = -2;
-		Assert.assertEquals(maxProduct_slidingWindow(nums), output);
+		Assert.assertEquals(maxProduct_Kandane(nums), output);
 	}
 	
 	@Test
@@ -89,7 +89,7 @@ public class P04_MaximumProductSubArray_152 {
 		//Negative Test Data
 		int[] nums = {0,-2,-3};
 		int output = 6;
-		Assert.assertEquals(maxProduct_slidingWindow(nums), output);
+		Assert.assertEquals(maxProduct_Kandane(nums), output);
 	}
 	
 	@Test
@@ -97,7 +97,7 @@ public class P04_MaximumProductSubArray_152 {
 		//Negative Test Data
 		int[] nums = {Integer.MAX_VALUE/2-1,2};
 		int output = Integer.MAX_VALUE-3;
-		Assert.assertEquals(maxProduct_slidingWindow(nums), output);
+		Assert.assertEquals(maxProduct_Kandane(nums), output);
 	}
 	
 	@Test
@@ -105,7 +105,7 @@ public class P04_MaximumProductSubArray_152 {
 		//Negative Test Data
 		int[] nums = {0,2,3,4};
 		int output = 24;
-		Assert.assertEquals(maxProduct_slidingWindow(nums), output);
+		Assert.assertEquals(maxProduct_Kandane(nums), output);
 	}
 	
 	@Test
@@ -113,7 +113,7 @@ public class P04_MaximumProductSubArray_152 {
 		//Negative Test Data
 		int[] nums = {0,2};
 		int output = 2;
-		Assert.assertEquals(maxProduct_slidingWindow(nums), output);
+		Assert.assertEquals(maxProduct_Kandane(nums), output);
 	}
 	
 	@Test
@@ -121,7 +121,7 @@ public class P04_MaximumProductSubArray_152 {
 		//Negative Test Data
 		int[] nums = {-2,0,-1};
 		int output = 0;
-		Assert.assertEquals(maxProduct_slidingWindow(nums), output);
+		Assert.assertEquals(maxProduct_Kandane(nums), output);
 	}
 	
 	@Test
@@ -129,7 +129,7 @@ public class P04_MaximumProductSubArray_152 {
 		//Negative Test Data
 		int[] nums = {-2,0};
 		int output = 0;
-		Assert.assertEquals(maxProduct_slidingWindow(nums), output);
+		Assert.assertEquals(maxProduct_Kandane(nums), output);
 	}
 	
 	
@@ -189,6 +189,23 @@ public class P04_MaximumProductSubArray_152 {
 				right=left;
 				prod=1;
 			}
+		}
+		return maxProd;
+	}
+	
+	private int maxProduct_Kandane(int[] nums) {
+		int prod = 1;
+		int maxProd = nums[0];
+		for(int i=0;i<nums.length;i++) {
+			prod *= nums[i];
+			if(maxProd < prod) maxProd = prod;
+			if(prod==0) prod = 1;
+		}
+		prod = 1;
+		for(int j=nums.length-1;j>=0;j--) {
+			prod *= nums[j];
+			if(maxProd < prod) maxProd = prod;
+			if(prod==0) prod = 1;
 		}
 		return maxProd;
 	}
