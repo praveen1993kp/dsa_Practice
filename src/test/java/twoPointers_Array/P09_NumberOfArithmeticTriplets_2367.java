@@ -1,5 +1,8 @@
 package twoPointers_Array;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Test;
 
 public class P09_NumberOfArithmeticTriplets_2367 {
@@ -63,7 +66,7 @@ public class P09_NumberOfArithmeticTriplets_2367 {
 		//Positive Test Data
 		int[] nums = {0,1,4,6,7,10};
 		int diff = 3;
-		System.out.println(noOfTriplets_threePointers(nums,diff));
+		System.out.println(noOfTriplets_Set(nums,diff));
 	}
 	
 	
@@ -73,7 +76,7 @@ public class P09_NumberOfArithmeticTriplets_2367 {
 		//Positive Case Test Data
 		int[] nums = {4,5,6,7,8,9,10,11,12};
 		int diff = 3;
-		System.out.println(noOfTriplets_threePointers(nums,diff));
+		System.out.println(noOfTriplets_Set(nums,diff));
 	}
 	
 	@Test
@@ -81,7 +84,7 @@ public class P09_NumberOfArithmeticTriplets_2367 {
 		//Positive Case Test Data
 		int[] nums = {0,3,22};
 		int diff = 2;
-		System.out.println(noOfTriplets_threePointers(nums,diff));
+		System.out.println(noOfTriplets_Set(nums,diff));
 	}
 	
 	@Test
@@ -89,7 +92,7 @@ public class P09_NumberOfArithmeticTriplets_2367 {
 		//Positive Case Test Data
 		int[] nums = {0,1,2};
 		int diff = 1;
-		System.out.println(noOfTriplets_threePointers(nums,diff));
+		System.out.println(noOfTriplets_Set(nums,diff));
 	}
 	
 	@Test
@@ -130,6 +133,16 @@ public class P09_NumberOfArithmeticTriplets_2367 {
 	 * 		-- Reassign p1 = current p1+1, p2 = p1+1 and p3 = p2+1
 	 * 7. Continue steps 3-6 till p1 less than nums.length-1
 	 * 8. Return the counter
+	 * 
+	 * 
+	 * -- Hashing method --
+	 * 
+	 * 1. Create a counter = 0
+	 * 2. Create a set to hold integers
+	 * 3. Add all the elements of nums[i] into the set (Set is enough since no duplicates are allowed in nums[i]
+	 * 4. Traverse again for each number and check if nums[i]+diff and nums[i]+2*diff are available
+	 * 5. If available, increment counter
+	 * 6. Once traversing is done, return the counter
 	 * 
 	 */	
 	
@@ -176,6 +189,18 @@ public class P09_NumberOfArithmeticTriplets_2367 {
                 p3 = p2+1;
             }   
         }
+        return counter;
+	}
+	
+	private int noOfTriplets_Set(int[] nums, int diff) {
+		int counter = 0;
+		Set<Integer> hSet = new HashSet<>();
+        for(int i=0;i<nums.length;i++)
+            hSet.add(nums[i]);
+        
+        for(int i=0;i<nums.length;i++)
+            if(hSet.contains(nums[i]+diff) && hSet.contains(nums[i]+(2*diff))) counter++;
+ 
         return counter;
 	}
 }
