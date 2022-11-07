@@ -96,12 +96,20 @@ public class SortAnArrayWith012 {
 	 * 3. Continue for i<nums.length
 	 * 4. Return nums
 	 * 
-	 * -- Three Pointers --
+	 * -- Three Pointers - Dutch Flag - Ascending --
 	 * 
 	 * 1. Create left=0,middle=0 and right=nums.length-1
 	 * 2. When middle==left, swap and increment left and middle
 	 * 3. When middle==right, swap and decrement right
 	 * 4. When middle==middle, increment right. Continue till middle<=right
+	 * 5. Return nums
+	 * 
+	 * -- Three Pointers - Dutch Flag - Descending --
+	 * 
+	 * 1. Create left=0,middle and right=nums.length-1
+	 * 2. When middle==high val, swap and increment left
+	 * 3. When middle==low val, swap and decrement right and decrement middle
+	 * 4. When middle==mid val, decrement middle. Continue till low<middle
 	 * 5. Return nums
 	 * 
 	 */	
@@ -140,19 +148,19 @@ public class SortAnArrayWith012 {
 	}
 	
 	private int[] sortArray_threePointers_descending(int[] nums) {
-		int left=0,middle=0,right=nums.length-1;
+		int left=0,middle=nums.length-1,right=nums.length-1;
 		int val1=2,val2=1,val3=0;
 		int temp=0;
-		while(middle<right) {
+		while(left<middle) {
 			if(nums[middle]==val1) {
 				temp = nums[middle];
-				nums[middle++] = nums[left];
+				nums[middle] = nums[left];
 				nums[left++] = temp;
 			} else if(nums[middle]==val3) {
 				temp = nums[middle];
-				nums[middle] = nums[right];
+				nums[middle--] = nums[right];
 				nums[right--] = temp;
-			} else middle++;
+			} else middle--;
 		}
 		System.out.println(Arrays.toString(nums));
 		return nums;
