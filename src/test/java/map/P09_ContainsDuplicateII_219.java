@@ -108,6 +108,33 @@ public class P09_ContainsDuplicateII_219 {
 	}
 	
 	@Test
+	public void edge() {
+		//Negative Test Data
+		int[] nums = {1,2,2,4};
+		int k = 5;
+		boolean output = true;
+		Assert.assertEquals(containsDuplicate_hashMap(nums,k),output);
+	}
+	
+	@Test
+	public void edge2() {
+		//Negative Test Data
+		int[] nums = {1,2,2,4};
+		int k = 0;
+		boolean output = false;
+		Assert.assertEquals(containsDuplicate_hashMap(nums,k),output);
+	}
+	
+	@Test
+	public void edge3() {
+		//Negative Test Data  // When only one element is available, irrespective of k, we can return false
+		int[] nums = {1};
+		int k = 1;
+		boolean output = false;
+		Assert.assertEquals(containsDuplicate_hashMap(nums,k),output);
+	}
+	
+	@Test
 	public void negative2() {
 		//Negative Test Data
 		int[] nums = {1,2,3,1,2,3};
@@ -153,6 +180,18 @@ public class P09_ContainsDuplicateII_219 {
 		}
 		return false;
 	}
+	
+	//Need to Debug and Understand
+	public int majorityElementUsingBoyreMooreVotingAlgo(int[] nums) {
+        int majEle=nums[0];
+        int count=1;
+        for(int i=1;i<nums.length;i++){
+            if(count==0)majEle=nums[i];
+            if(majEle==nums[i])count++;
+            else count--;
+        }
+        return majEle;
+}
 
 	
 }
