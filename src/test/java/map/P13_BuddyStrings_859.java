@@ -149,6 +149,7 @@ public class P13_BuddyStrings_859 {
 		if (index2 == -1) return false;
 	    if(s.charAt(index1)!=goal.charAt(index2)) return false;
 	    return true;
+	    
 	}
 
 	
