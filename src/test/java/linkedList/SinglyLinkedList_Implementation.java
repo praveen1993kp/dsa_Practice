@@ -135,13 +135,8 @@ public class SinglyLinkedList_Implementation {
 		for(int curr : input) {
 			add(curr);
 		}
-		//System.out.println(get(3));
-		//set(2,10);
-		//get(2);
-		//removeFromIndex(2);
 		indexOf(10);
 		lastIndexOf(10);
-		//removeVal(3);
 	}
 	
 	@Test
@@ -150,13 +145,8 @@ public class SinglyLinkedList_Implementation {
 		for(int curr : input) {
 			add(curr);
 		}
-		//System.out.println(get(3));
-		//set(2,10);
-		//get(2);
-		//removeFromIndex(2);
 		indexOf(10);
 		lastIndexOf(10);
-		//removeVal(3);
 	}
 	
 	@Test
@@ -165,13 +155,8 @@ public class SinglyLinkedList_Implementation {
 		for(int curr : input) {
 			add(curr);
 		}
-		//System.out.println(get(3));
-		//set(2,10);
-		//get(2);
-		//removeFromIndex(2);
 		indexOf(2);
 		lastIndexOf(2);
-		//removeVal(3);
 	}
 	
 }
