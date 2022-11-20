@@ -1,6 +1,12 @@
 package stack;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Stack;
+
 import org.junit.Test;
+
+import junit.framework.Assert;
 
 public class S01_ValidParantheses_20 {
 
@@ -61,27 +67,108 @@ public class S01_ValidParantheses_20 {
 	@Test
 	public void example1() {
 		//Positive Test Data
-		
+		String s = "{}";
+		boolean output = true;
+		Assert.assertEquals(isValidPalindrome_WithoutHashMap(s), output);
 	}
 	
 	@Test
-	public void example2() {
+	public void edge1() {
 		//Edge Case Test Data
-		
+		String s = "[[}}";
+		boolean output = false;
+		Assert.assertEquals(isValidPalindrome_WithoutHashMap(s), output);
 	}
 	
 	@Test
-	public void example3() {
-		//Negative Test Data
-		
+	public void edge2() {
+		//Edge Case Test Data
+		String s = "[";
+		boolean output = false;
+		Assert.assertEquals(isValidPalindrome_WithoutHashMap(s), output);
 	}
 	
+	@Test
+	public void positive2() {
+		//Edge Case Test Data
+		String s = "{[()()()({})]}";
+		boolean output = true;
+		Assert.assertEquals(isValidPalindrome_WithoutHashMap(s), output);
+	}
+	
+	@Test
+	public void negative() {
+		//Negative Test Data
+		String s = "[[}";
+		boolean output = false;
+		Assert.assertEquals(isValidPalindrome_WithoutHashMap(s), output);
+	}
+	
+	
+
 	/*
 	 * --- Pseudo Code ---
 	 * 
+	 * -- Using HashMap --
+	 * 
+	 * If the length of s is odd, return false
+	 * 1. Create a hashMap and add all the closing braces as key and opening braces as value
+	 * 2. When opening bracket is found, add into stack
+	 * 3. When closing bracket is found,
+	 * 		i) If stack is empty, return false
+	 * 		ii) Else check if the peek element matches the opening bracket of current closing bracket
+	 * 				i) If matches, pop the element
+	 * 				ii) If doesn't match, return false
+	 * 4. After all traversing is done, return if stack is empty
+	 * 
+	 * -- Without HashMap --
+	 * 
+	 * 1. If the length of s is odd, return false
+	 * 2. When opening bracket is found, add into stack
+	 * 3. When closing bracket is found,
+	 * 		i) If stack is empty, return false
+	 * 		ii) Else check if the peek element matches the opening bracket of current closing bracket
+	 * 				i) If matches, pop the element
+	 * 				ii) If doesn't match, return false
+	 * 4. After all traversing is done, return if stack is empty
+	 * 
+	 * 
 	 */	
 	
-	public void method1() {
-		
+	private boolean isValidPalindrome(String s) {
+		if(s.length()%2==1) return false;
+        Stack<Character> stack = new Stack<>();
+        Map<Character,Character> hMap = new HashMap<>();
+        hMap.put(')','(');
+        hMap.put('}','{');
+        hMap.put(']','[');
+        
+        for(char ch : s.toCharArray()){
+            if(hMap.containsKey(ch)){
+                if(stack.isEmpty()) return false;
+                if(stack.peek()==hMap.get(ch)) 
+                    stack.pop();
+                else return false;
+            } else stack.push(ch);
+        }
+		return stack.isEmpty();
+	}
+	
+	private boolean isValidPalindrome_WithoutHashMap(String s) {
+		if(s.length()%2==1) return false;
+        Stack<Character> stack = new Stack<>();
+        
+        for(char ch : s.toCharArray()){
+            if(ch==')' || ch=='}' || ch==']'){
+                if(stack.isEmpty()) return false;
+                else {
+                    int val = stack.peek();
+                    if ((ch==')' && val=='(') || (ch=='}' && val=='{') || (ch==']' && val=='['))
+                        stack.pop();
+                    else return false;
+                }     
+            } else stack.push(ch);
+        }
+        return stack.isEmpty();
 	}
 }
