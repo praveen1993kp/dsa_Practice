@@ -5,7 +5,7 @@ import org.junit.Test;
 import junit.framework.Assert;
 import linkedList.SinglyLL_SongPlayList.PlayListNode;
 
-public class P02_PalindromeLinkedList_234 {
+public class P02_SLL_PalindromeLinkedList_234 {
 	Node head;
 	Node tail;
 	int length;
