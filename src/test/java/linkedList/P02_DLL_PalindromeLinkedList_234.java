@@ -6,7 +6,7 @@ import junit.framework.Assert;
 import linkedList.DoublyLinkedList_Implementation.Node;
 import linkedList.SinglyLL_SongPlayList.PlayListNode;
 
-public class P02_DLL_PalindromeLinkedList_235 {
+public class P02_DLL_PalindromeLinkedList_234 {
 	Node head;
 	Node tail;
 	int length;
