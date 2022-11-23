@@ -73,6 +73,34 @@ public class P02_SLL_PalindromeLinkedList_234 {
         return true;
 	}
 	
+	
+	public boolean isPalindrome(Node head) {
+		if(head==null || head.next==null) return true;
+        Node head2 = head;
+        Node reverse = null;
+        int length = 0;
+        while(head != null){
+            length++;
+            reverse = addFirst(reverse,head.value);
+            head = head.next;
+        }
+        while(length > length/2){
+            if(head2.value != reverse.value) return false;
+            length--;
+            head2 = head2.next;
+            reverse = reverse.next;
+        }
+        return true;
+	}
+	
+	public Node addFirst(Node head,int val){
+        Node node = new Node(val);
+        Node temp = head;
+        head = node;
+        head.next = temp;
+        return head;
+    } 
+
 	/*
 	 * Pseudo Code
 	 * 
@@ -85,7 +113,14 @@ public class P02_SLL_PalindromeLinkedList_234 {
 	 * 7. Repeat steps 2-6 till head becomes null or head.next is null
 	 * 9. Return true by default
 	 * 
+	 * -- Method 2 --
 	 * 
+	 * 1. Reverse the given head and store it in another node (Using addFirst method)
+	 * 2. Calculate the length of the list while reversing
+	 * 3. After all the elements are reversed, traverse for length > length/2 and head != null
+	 * 4. If head2 value and reverse value are not same, return false
+	 * 5. Decrease the length for each iteration and assign head2 and reverse to next node
+	 * 6. Continue steps 4-6 and return true if a list passes all the iterations
 	 * 
 	 */
 	
@@ -94,31 +129,31 @@ public class P02_SLL_PalindromeLinkedList_234 {
 	@Test
 	public void positive() {
 		int[] arr = {1,2,2,1};
-		Assert.assertEquals(palindromeList(addAll(arr)), true);
+		Assert.assertEquals(isPalindrome(addAll(arr)), true);
 	}
 	
 	@Test
 	public void edge() {
 		int[] arr = {1};
-		Assert.assertEquals(palindromeList(addAll(arr)), true);	
+		Assert.assertEquals(isPalindrome(addAll(arr)), true);	
 	}
 	
 	@Test
 	public void edge2() {
 		int[] arr = {1,0,1};
-		Assert.assertEquals(palindromeList(addAll(arr)), true);	
+		Assert.assertEquals(isPalindrome(addAll(arr)), true);	
 	}
 	
 	@Test
 	public void edge3() {
 		int[] arr = {1,1,1,1};
-		Assert.assertEquals(palindromeList(addAll(arr)), true);	
+		Assert.assertEquals(isPalindrome(addAll(arr)), true);	
 	}
 	
 	@Test
 	public void negative() {
 		int[] arr = {1,2,3,4,1};
-		Assert.assertEquals(palindromeList(addAll(arr)), false);	
+		Assert.assertEquals(isPalindrome(addAll(arr)), false);	
 	}
 	
 }
