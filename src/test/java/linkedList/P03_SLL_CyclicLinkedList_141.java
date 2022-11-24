@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 import linkedList.SinglyLL_SongPlayList.PlayListNode;
-// For the solution to work, execut in Leetcode
+// For the solution to work, execute in Leetcode
 public class P03_SLL_CyclicLinkedList_141 {
 	Node head;
 	Node tail;
