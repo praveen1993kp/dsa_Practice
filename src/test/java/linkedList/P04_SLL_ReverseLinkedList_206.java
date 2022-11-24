@@ -57,17 +57,22 @@ public class P04_SLL_ReverseLinkedList_206 {
 	}
 	
 	/*
-	 * Pseudo Code
+	 * Pseudo Code:
+	 * 
+	 * Time: O(n)
+	 * Space : O(n)
 	 * 
 	 * 1. Create a new node reverse
 	 * 2. Traverse for each element in the head and addFirst in the reverse linkedlist
 	 * 3. return reverse
 	 * 
 	 * 
-	 * Time: O(n)
-	 * Space : O(n)
+	 * 
 	 * 
 	 * -- Optimized Solution --
+	 * 
+	 * Time : O(n)
+	 * Space : O(1)
 	 * 
 	 * 1. Traverse using the given node head
 	 * 2. Update the first node next value to second value next. If second value next is null, assign first node next value as null
@@ -76,8 +81,7 @@ public class P04_SLL_ReverseLinkedList_206 {
 	 * 5. Repeat the process till second not equal to null
 	 * 6. Return the node
 	 * 
-	 * Time : O(n)
-	 * Space : O(1)
+	 * 
 	 * 
 	 */
 	
