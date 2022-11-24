@@ -8,7 +8,7 @@ import org.junit.Test;
 import junit.framework.Assert;
 import linkedList.SinglyLL_SongPlayList.PlayListNode;
 // For the solution to work, execute in Leetcode
-public class P05_SLL_RightRotateList_142 {
+public class P05_SLL_RightRotateList_61 {
 	Node head;
 	Node tail;
 	int length;
