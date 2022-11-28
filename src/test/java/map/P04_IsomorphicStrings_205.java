@@ -69,7 +69,7 @@ public class P04_IsomorphicStrings_205 {
 		String s = "add";
 		String t = "egg";
 		boolean output = true;
-		Assert.assertEquals(isIsomorphic(s,t), output);
+		Assert.assertEquals(isIsomorphic2(s,t), output);
 	}
 	
 	@Test
@@ -78,7 +78,7 @@ public class P04_IsomorphicStrings_205 {
 		String s = "add";
 		String t = "122";
 		boolean output = true;
-		Assert.assertEquals(isIsomorphic(s,t), output);
+		Assert.assertEquals(isIsomorphic2(s,t), output);
 	}
 	
 	@Test
@@ -87,7 +87,7 @@ public class P04_IsomorphicStrings_205 {
 		String s = "ABCDEFB";
 		String t = "!@#DEF@";
 		boolean output = true;
-		Assert.assertEquals(isIsomorphic(s,t), output);
+		Assert.assertEquals(isIsomorphic2(s,t), output);
 	}
 	
 	@Test
@@ -96,7 +96,7 @@ public class P04_IsomorphicStrings_205 {
 		String s = "abca";
 		String t = "AB2a";
 		boolean output = false;
-		Assert.assertEquals(isIsomorphic(s,t), output);
+		Assert.assertEquals(isIsomorphic2(s,t), output);
 	}
 	
 	@Test
@@ -105,7 +105,7 @@ public class P04_IsomorphicStrings_205 {
 		String s = "foo";
 		String t = "bar";
 		boolean output = false;
-		Assert.assertEquals(isIsomorphic(s,t), output);
+		Assert.assertEquals(isIsomorphic2(s,t), output);
 	}
 	
 	/*
@@ -117,6 +117,15 @@ public class P04_IsomorphicStrings_205 {
 	 * 4. Continue steps 2-3 only when both the keys are not available in respective hashmap
 	 * 5. When condition 4 is not met, if the values in both maps are not equal to current occuring value, return false
 	 * 6. Return true by default
+	 * 
+	 * -- Using Ascii --
+	 * 
+	 * 1. Create two ascii arrays
+	 * 2. Traverse through the array
+	 * 3. If the character at i in s and t are not equal, return false
+	 * 4. Assign the values of s.charAt(i) and t.charAt(i) in ascii as the current index
+	 * 		-- To track the last index it occurred
+	 * 5. Return true by default
 	 * 
 	 * 
 	 */	
@@ -137,4 +146,21 @@ public class P04_IsomorphicStrings_205 {
         }
         return true;
 	}
+	
+	public boolean isIsomorphic2(String s, String t) {
+        int[] sMap=new int[128];
+        int[] tMap=new int[128];
+        char sChar,tChar;
+
+        for(int i=s.length()-1;i>=0;i--){
+            sChar = s.charAt(i);
+            tChar = t.charAt(i);
+
+            if(sMap[sChar]!=tMap[tChar]) return false;
+
+            sMap[sChar] = i;
+            tMap[tChar] = i;
+        }
+        return true;	
+    }
 }
