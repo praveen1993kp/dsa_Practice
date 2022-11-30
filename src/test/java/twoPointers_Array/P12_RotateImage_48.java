@@ -108,7 +108,7 @@ public class P12_RotateImage_48 {
             }
         }
         int l1=0,l2=0;
-        int r1=len,r2=len;
+        int r1=len,r2=len; 
         
         while(l1<r1){
             int temp = matrix[l1][l2];
