@@ -2,6 +2,8 @@ package linkedList;
 
 import org.junit.Test;
 
+import linkedList.SinglyLL_SongPlayList.PlayListNode;
+
 public class SinglyLinkedList_Implementation {
 	Node head;
 	Node tail;
@@ -15,6 +17,25 @@ public class SinglyLinkedList_Implementation {
 			next = null;
 		}
 	}
+	
+	/*
+	 * add(int val)
+	 * addFirst(int val)
+	 * removeFirst()
+	 * removeLast()
+	 * removeVal(int val)
+	 * printVals(Node node)
+	 * removeFromIndex(int index)
+	 * set(int index, int val)
+	 * get(int index)
+	 * indexOf(int val)
+	 * lastIndexOf(int val)
+	 * addAll(int[] arr)
+	 * removeAll(int val)
+	 * 
+	 * 
+	 * /
+	 */
 	
 	public void add(int val) {
 		Node temp = new Node(val);
@@ -35,7 +56,7 @@ public class SinglyLinkedList_Implementation {
 	
 	public void printVals(Node head) {
 		while(head!=null) {
-			System.out.println(head.value);
+			System.out.print(head.value + "-");
 			head = head.next;
 		}
 		
@@ -56,18 +77,27 @@ public class SinglyLinkedList_Implementation {
 		printVals(head);
 	}
 	
-	public void removeVal(int val) {
-		Node val1 = head.next;
-		Node val2 = val1;
-		while(val2.next != null) {
-			if(val1.value==val) {
-				val1.next = val2.next;
+	
+	//Removes the first occurrence of a value
+	public boolean removeVal(int val) {
+		if(head==null) return false;
+		Node temp1 = head;
+		Node temp2 = temp1.next;
+		while(temp2!=null) {
+			if(temp1.value==val) {
+				head = head.next;
+				length--;
+				return true;
+			}else {
+				if(temp2.value==val) {
+					temp1.next = temp2.next;
+					temp2 = temp2.next;
+					length--;
+					return true;
+				}
 			}
-			val1 = val2;
-			val2 = val1.next;
 		}
-		printVals(head);
-		
+		return false;	
 	}
 	
 	public void set(int index,int val) {
@@ -127,6 +157,39 @@ public class SinglyLinkedList_Implementation {
 		return lastIndex;
 	}
 	
+	public void addAll(int[] val){
+		Node temp = null;
+		for(int i : val) {
+			temp = new Node(i);
+			if(head==null) {
+				head = tail = temp;
+			}else {
+				tail.next = temp;
+				tail = temp;
+			}
+			length++;
+		}
+	}
+	
+	public void removeAll(int val){
+		Node first = head;
+		Node second = head.next;
+		while(first!=null && first.value==val) {
+			head = first.next;
+			first = head;
+			length--;
+		}
+		if(first != null && first.next != null) second = first.next;
+		else second = null;
+		while(second != null) {
+			while(second!=null && second.value == val) {
+				first.next = second.next;
+				second = second.next;
+			}
+			first = second;
+			if(second!=null) second = second.next;
+		}
+	}
 	
 	
 	@Test
@@ -135,8 +198,10 @@ public class SinglyLinkedList_Implementation {
 		for(int curr : input) {
 			add(curr);
 		}
-		indexOf(10);
-		lastIndexOf(10);
+		indexOf(2);
+		lastIndexOf(2);
+		removeVal(1);
+		printVals(head);
 	}
 	
 	@Test
@@ -157,6 +222,24 @@ public class SinglyLinkedList_Implementation {
 		}
 		indexOf(2);
 		lastIndexOf(2);
+	}
+	
+	@Test
+	public void removeAllTest() {
+		int[] arr = {1,1,1,1,1};
+		for(int i : arr) {
+			add(i);
+		}
+		removeAll(1);
+		printVals(head);
+		//54321
+	}
+	
+	@Test
+	public void addAllTest() {
+		int[] arr = {1,2,2,3,4,2,2,5};
+		addAll(arr);
+		printVals(head);
 	}
 	
 }
