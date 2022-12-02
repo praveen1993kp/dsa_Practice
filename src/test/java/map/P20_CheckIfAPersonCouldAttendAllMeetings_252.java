@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
-public class P20_CheckIfAPersonCouldAttendAllMeetings_57 {
+public class P20_CheckIfAPersonCouldAttendAllMeetings_252 {
 
 	/*
 	 * PROBLEM STATEMENT 
