@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
-public class KConsecutiveSum {
+public class S01_MaxSumOfKConsecutiveElements {
 
 	/*
 	 * PROBLEM STATEMENT 
