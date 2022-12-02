@@ -127,6 +127,14 @@ public class P04_IsomorphicStrings_205 {
 	 * 		-- To track the last index it occurred
 	 * 5. Return true by default
 	 * 
+	 * -- Using Single HashMap --
+	 * 
+	 * 1. Create a hashMap to hold string values. 
+	 * 2. Traverse through the array
+	 * 3. Add each value in s as key and t as value and viceversa. Have an identifier to identify as key
+	 * 4. Continue steps 2-6 from the two hashmap solution
+	 * 5. Return true by default
+	 * 
 	 * 
 	 */	
 	
@@ -162,5 +170,24 @@ public class P04_IsomorphicStrings_205 {
             tMap[tChar] = i;
         }
         return true;	
+    }
+	
+	public boolean isIsomorphic_SingleHashMap(String s, String t) {
+		Map<String,String> hMap = new HashMap<>(s.length()*2);
+        String sKey="",sValue="",tKey="",tValue="";
+        for(int i=0;i<s.length();i++){
+             sKey = s.charAt(i)+"0";
+             sValue = t.charAt(i)+"0";
+             tKey = t.charAt(i) + "1";
+             tValue = s.charAt(i) + "1";
+            if(!hMap.containsKey(sKey) && !hMap.containsKey(tKey)){
+                hMap.put(sKey,sValue);
+                hMap.put(tKey,tValue);
+            } else{
+                if(hMap.containsKey(sKey) && !hMap.get(sKey).equals(sValue)) return false;
+                if(hMap.containsKey(tKey) && !hMap.get(tKey).equals(tValue)) return false;
+            }
+        }
+        return true;
     }
 }
