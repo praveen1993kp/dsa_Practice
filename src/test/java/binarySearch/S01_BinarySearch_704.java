@@ -143,7 +143,7 @@ Input: nums = [-1,0,3,5,9,12], target = 9
 	//If first is required, make it as "while(mid>=0 && nums[mid]==target) mid--; return mid+1;
 	private int isTargetElementPresent_BinarySearch(int[] nums, int target) {
 		int left=0,right=nums.length-1,mid=0;
-		while(left<right) {
+		while(left<=right) {
 			mid = left+(right-left)/2;
 			if(nums[mid] < target) {
 				left = mid+1;
