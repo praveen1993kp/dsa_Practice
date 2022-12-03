@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import junit.framework.Assert;
 
-public class S01_FindTargetElement {
+public class S01_BinarySearch_704 {
 
 	/*
 	 * PROBLEM STATEMENT 
