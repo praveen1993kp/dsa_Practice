@@ -1,5 +1,7 @@
 package binarySearch;
 
+import java.util.Arrays;
+
 import org.junit.Test;
 
 import junit.framework.Assert;
@@ -66,7 +68,7 @@ public class S02_SearchInsertIndex_35 {
 		int[] nums = {-1,0,3,5,9,12};
 		int target = 9;
 		int output = 4;
-		Assert.assertEquals(insertPosition_WithoutEquals(nums,target), output);
+		Assert.assertEquals(insertPosition_InbuiltMethod(nums,target), output);
 	}
 	
 	@Test
@@ -75,7 +77,7 @@ public class S02_SearchInsertIndex_35 {
 		int[] nums = {1,3,5,6};
 		int target = 2;
 		int output = 1;
-		Assert.assertEquals(insertPosition_WithoutEquals(nums,target), output);
+		Assert.assertEquals(insertPosition_InbuiltMethod(nums,target), output);
 	}
 	
 	@Test
@@ -84,7 +86,7 @@ public class S02_SearchInsertIndex_35 {
 		int[] nums = {1,2,3,4};
 		int target = 5;
 		int output = 4;
-		Assert.assertEquals(insertPosition_WithoutEquals(nums,target), output);
+		Assert.assertEquals(insertPosition_InbuiltMethod(nums,target), output);
 	}
 	
 	@Test
@@ -93,7 +95,7 @@ public class S02_SearchInsertIndex_35 {
 		int[] nums = {1};
 		int target = 4;
 		int output = 1;
-		Assert.assertEquals(insertPosition_WithoutEquals(nums,target), output);
+		Assert.assertEquals(insertPosition_InbuiltMethod(nums,target), output);
 	}
 
 	@Test
@@ -102,7 +104,7 @@ public class S02_SearchInsertIndex_35 {
 		int[] nums = {10};
 		int target = 9;
 		int output = 0;
-		Assert.assertEquals(insertPosition_WithoutEquals(nums,target), output);
+		Assert.assertEquals(insertPosition_InbuiltMethod(nums,target), output);
 	}
 	
 	@Test
@@ -111,7 +113,7 @@ public class S02_SearchInsertIndex_35 {
 		int[] nums = {9,9,9};
 		int target = 1;
 		int output = 0;
-		Assert.assertEquals(insertPosition_WithoutEquals(nums,target), output);
+		Assert.assertEquals(insertPosition_InbuiltMethod(nums,target), output);
 	}
 	
 	@Test
@@ -120,7 +122,7 @@ public class S02_SearchInsertIndex_35 {
 		int[] nums = {1,2,3,4};
 		int target = 3;
 		int output = 2;
-		Assert.assertEquals(insertPosition_WithoutEquals(nums,target), output);
+		Assert.assertEquals(insertPosition_InbuiltMethod(nums,target), output);
 	}
 	
 	@Test
@@ -129,7 +131,7 @@ public class S02_SearchInsertIndex_35 {
 		int[] nums = {2,3,4};
 		int target = 9;
 		int output = 3;
-		Assert.assertEquals(insertPosition_WithoutEquals(nums,target), output);
+		Assert.assertEquals(insertPosition_InbuiltMethod(nums,target), output);
 	}
 	
 	/*
@@ -152,6 +154,11 @@ public class S02_SearchInsertIndex_35 {
 	 * 
 	 * Time: O(logn)
 	 * Space: O(1)
+	 * 
+	 * -- Using Inbuilt method --
+	 * 1. Get the index from Arrays.binarySearch() method
+	 * 2. If the index is negative, return (-1*index)-1
+	 * 3. Else, return index
 	 *
 	 * 
 	 */	
@@ -191,5 +198,10 @@ public class S02_SearchInsertIndex_35 {
 			}
 		}
 		return nums[left] < target ? left+1 : left;
+	}
+	
+	private int insertPosition_InbuiltMethod(int[] nums, int target) {
+		int index = Arrays.binarySearch(nums, target);
+		return (index<0) ? (-1*index)-1 : index;
 	}
 }
