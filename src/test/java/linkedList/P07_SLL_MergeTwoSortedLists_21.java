@@ -73,7 +73,11 @@ public class P07_SLL_MergeTwoSortedLists_21 {
 	 * 4. When one list becomes null, add all the remaining nodes of another list into the merged list
 	 * 5. Return the merged list
 	 * 
+	 * Recursion:
 	 * 
+	 * 1. Call the helperMethod with initial parameters
+	 * 2. Breaking point inside helper method: When list1 or list2 is null, return head
+	 * 3. Call the helperMethod recursively from the helperMethod in the return statement
 	 * 
 	 * 
 	 */
@@ -84,21 +88,21 @@ public class P07_SLL_MergeTwoSortedLists_21 {
 	public void positive() {
 		int[] arr1 = {1,2,4};
 		int[] arr2 = {1,3,4};
-		printVals(mergeLists((addAll(arr1)),addAll(arr2)));
+		printVals(mergeLists_Recursive((addAll(arr1)),addAll(arr2)));
 	}
 	
 	@Test
 	public void edge() {
 		int[] arr1 = {};
 		int[] arr2 = {};
-		printVals(mergeLists((addAll(arr1)),addAll(arr2)));	
+		printVals(mergeLists_Recursive((addAll(arr1)),addAll(arr2)));	
 	}
 	
 	@Test
 	public void edge2() {
 		int[] arr1 = {};
 		int[] arr2 = {0};
-		printVals(mergeLists((addAll(arr1)),addAll(arr2)));
+		printVals(mergeLists_Recursive((addAll(arr1)),addAll(arr2)));
 	}
 
 	private Node mergeLists(Node list1, Node list2) {
@@ -123,5 +127,32 @@ public class P07_SLL_MergeTwoSortedLists_21 {
 	        }
 	        return head.next;
 	}
+	
+	private Node mergeLists_Recursive(Node list1, Node list2) {
+		Node head = new Node();
+        Node tail = head;
+        if(list1==null) return list2;
+        if(list2==null) return list1;
+        
+        return helperMethod(list1, list2,head,tail).next;
+	}
+	
+	public Node helperMethod(Node list1, Node list2,Node head, Node tail){
+        if(list1 ==null || list2 ==null) return head;
+            if(list1.value < list2.value){
+                tail.next = list1;
+                list1 = list1.next;
+            } else {
+                tail.next = list2;
+                list2 = list2.next;
+            }
+            //printMethod(head);
+            tail = tail.next;      
+            if(list1==null)
+                tail.next = list2;
+            else if (list2==null)
+                tail.next = list1;
+        return helperMethod(list1, list2,head,tail);
+    }
 
 }
