@@ -102,6 +102,14 @@ public class P22_MaximumNumberOfPairsInArray_2341 {
 	 * 5. If value is odd, add 1 into uniqueKeys
 	 * 6. Update pairs removed as (length of array-uniqueKeys)/2 
 	 * 7. Return pairs removed and uniqueKeys in an array
+	 * 
+	 * -- Ascii --
+	 * 
+	 * 1. Create an ascii of size 101
+	 * 2. Add the occurrence of each element into the ascii array
+	 * 3. Traverse again through the number and if the occurrence is odd, increment uniqueKeys
+	 * 4. Update pairs removed as (length of array-uniqueKeys)/2
+	 * 5. Return pairs removed and uniqueKeys in an array
 	 */	
 	
 	public int[] numberOfPairs(int[] nums) {
@@ -115,6 +123,21 @@ public class P22_MaximumNumberOfPairsInArray_2341 {
         while(itr.hasNext())
             uniqueKeys += itr.next()%2;
         
+        return new int[]{(nums.length-uniqueKeys)/2,uniqueKeys};
+    }
+	
+	public int[] numberOfPairs_ascii(int[] nums) {
+        int[] ascii = new int[101];
+        for(int num : nums)
+            ascii[num]++;
+        
+        int uniqueKeys = 0;
+        for(int i=0;i<ascii.length;i++){
+            if(ascii[i]!=0){
+                uniqueKeys += ascii[i]%2;
+            }
+        }
+
         return new int[]{(nums.length-uniqueKeys)/2,uniqueKeys};
     }
 }
