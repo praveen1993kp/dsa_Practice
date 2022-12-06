@@ -59,9 +59,19 @@ public class P08_SLL_RemoveLinkedListElements_203 {
 	/*
 	 * Pseudo Code
 	 * 
+	 * 1. Take instances of head and head.next as temp1 and next1
+	 * 2. If next1.val == val, point temp1.next as next1.next
+	 * 3. If repointing is done, move next1 alone
+	 * 4. else, move temp1 too
+	 * 5. Traverse till next1 != null
+	 * 6. return head
 	 * 
-	 * 
-	 * 
+	 * -- Recursion --
+	 * 1. Take node instances in the method
+	 * 2. Call the helper method with required parameters
+	 * 3. Breaking point : When current element is null, return head
+	 * 4. After the operations are completed, call the helper method again using updated parameters
+	 * 5. return head
 	 * 
 	 * 
 	 * 
