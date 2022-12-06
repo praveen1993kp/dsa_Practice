@@ -92,7 +92,7 @@ public class P04_SLL_ReverseLinkedList_206 {
 		int[] arr = {1,2,3,4,5};
 		int[] output = {5,4,3,2,1};
 		//Assert.assertEquals(reverseLinkedList(addAll(arr)), addAll(output));
-		printVals(reverseLinkedList_ConstantSpace(addAll(arr)));
+		printVals(reverseLinkedList_Recursive(addAll(arr)));
 	}
 	
 	@Test
@@ -100,7 +100,7 @@ public class P04_SLL_ReverseLinkedList_206 {
 		int[] arr = {1};
 		int[] output = {1};
 		//Assert.assertEquals(reverseLinkedList(addAll(arr)), addAll(output));	
-		printVals(reverseLinkedList_ConstantSpace(addAll(arr)));
+		printVals(reverseLinkedList_Recursive(addAll(arr)));
 	}
 	
 	@Test
@@ -108,7 +108,7 @@ public class P04_SLL_ReverseLinkedList_206 {
 		int[] arr = {};
 		int[] output = {};
 		//Assert.assertEquals(reverseLinkedList(addAll(arr)), addAll(output));	
-		printVals(reverseLinkedList_ConstantSpace(addAll(arr)));
+		printVals(reverseLinkedList_Recursive(addAll(arr)));
 	}
 	
 	@Test
@@ -116,7 +116,7 @@ public class P04_SLL_ReverseLinkedList_206 {
 		int[] arr = {1,1,1,1};
 		int[] output = {1,1,1,1};
 		//Assert.assertEquals(reverseLinkedList(addAll(arr)), addAll(output));	
-		printVals(reverseLinkedList_ConstantSpace(addAll(arr)));
+		printVals(reverseLinkedList_Recursive(addAll(arr)));
 	}
 
 	private Node reverseLinkedList(Node head) {
@@ -140,6 +140,22 @@ public class P04_SLL_ReverseLinkedList_206 {
 		}
         return head;
 	}
+	
+	public Node reverseLinkedList_Recursive(Node head) {
+		if(head==null || head.next==null) return head;
+        Node a = head;
+        Node b = a.next;
+        
+        return recursive(head,a,b);
+	}
+	
+	public Node recursive(Node head, Node a, Node b){
+        if(b==null) return head;
+            head = addFirst(head,b.value);
+            a.next = (b.next==null) ? null : b.next;
+            b = b.next;
+        return recursive(head,a,b);
+    }
 
 	private Node addFirst(Node head, int value) {
 		Node node = new Node(value);
