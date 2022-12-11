@@ -67,7 +67,7 @@ public class S02_BubbleSort {
 		int[] nums = {5,4,3,2,1};
 		int[] output = {1,2,3,4,5};
 		int[] descendingOutput = {5,4,3,2,1};
-		Assert.assertTrue(Arrays.equals(sortArray_BubbleSort(nums), output));
+		Assert.assertTrue(Arrays.equals(sortArray_Recursion(nums), output));
 		Assert.assertTrue(Arrays.equals(sortArray_BubbleSort_Descending(nums), descendingOutput));
 	}
 	
@@ -77,7 +77,7 @@ public class S02_BubbleSort {
 		int[] nums = {-5,4,3,2,1};
 		int[] output = {-5,1,2,3,4};
 		int[] descendingOutput = {4,3,2,1,-5};
-		Assert.assertTrue(Arrays.equals(sortArray_BubbleSort(nums), output));
+		Assert.assertTrue(Arrays.equals(sortArray_Recursion(nums), output));
 		Assert.assertTrue(Arrays.equals(sortArray_BubbleSort_Descending(nums), descendingOutput));
 	}
 	
@@ -87,7 +87,7 @@ public class S02_BubbleSort {
 		int[] nums = {-5,1,2,-5,-5};
 		int[] output = {-5,-5,-5,1,2};
 		int[] descendingOutput = {2,1,-5,-5,-5};
-		Assert.assertTrue(Arrays.equals(sortArray_BubbleSort(nums), output));
+		Assert.assertTrue(Arrays.equals(sortArray_Recursion(nums), output));
 		Assert.assertTrue(Arrays.equals(sortArray_BubbleSort_Descending(nums), descendingOutput));
 	}
 	
@@ -97,7 +97,7 @@ public class S02_BubbleSort {
 		int[] nums = {-5};
 		int[] output = {-5};
 		int[] descendingOutput = {-5};
-		Assert.assertTrue(Arrays.equals(sortArray_BubbleSort(nums), output));
+		Assert.assertTrue(Arrays.equals(sortArray_Recursion(nums), output));
 		Assert.assertTrue(Arrays.equals(sortArray_BubbleSort_Descending(nums), descendingOutput));
 	}
 	
@@ -107,7 +107,7 @@ public class S02_BubbleSort {
 		int[] nums = {1,2,3};
 		int[] output = {1,2,3};
 		int[] descendingOutput = {3,2,1};
-		Assert.assertTrue(Arrays.equals(sortArray_BubbleSort(nums), output));
+		Assert.assertTrue(Arrays.equals(sortArray_Recursion(nums), output));
 		Assert.assertTrue(Arrays.equals(sortArray_BubbleSort_Descending(nums), descendingOutput));
 	}
 	
@@ -145,6 +145,22 @@ public class S02_BubbleSort {
 		}
 		System.out.println(Arrays.toString(nums));
 		return nums;
+	}
+	
+	public int[] sortArray_Recursion(int[] nums) {
+		return recursion (nums,0,1);
+	}
+	
+	public int[] recursion(int[] nums,int i, int j) {
+		if(i==nums.length-1) return nums;
+			for(;j<nums.length-i;j++) {
+				if(nums[j-1] > nums[j]) {
+					int temp = nums[j];
+					nums[j] = nums[j-1];
+					nums[j-1] = temp;
+				}
+			}
+		return recursion(nums,i+1,1);
 	}
 	
 	public int[] sortArray_BubbleSort_Descending(int[] nums) {
