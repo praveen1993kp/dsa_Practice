@@ -65,7 +65,7 @@ public class FindMaxSumSubArray {
 		//Positive Test Data
 		int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
 		int sum = 6;
-		Assert.assertEquals(findMaxSumSubArray_bruteForce(nums), sum);
+		Assert.assertEquals(findMaxSumSubArray_Practice(nums), sum);
 	}
 	
 	@Test
@@ -73,7 +73,7 @@ public class FindMaxSumSubArray {
 		//Edge Case Test Data
 		int[] nums = {0,3,5,0};
 		int sum = 8;
-		Assert.assertEquals(findMaxSumSubArray_kandane(nums), sum);
+		Assert.assertEquals(findMaxSumSubArray_Practice(nums), sum);
 	}
 	
 	
@@ -83,7 +83,7 @@ public class FindMaxSumSubArray {
 		//Negative Test Data
 		int[] nums = {-1,-3,-5};
 		int sum = -1;
-		Assert.assertEquals(findMaxSumSubArray_kandane(nums), sum);
+		Assert.assertEquals(findMaxSumSubArray_Practice(nums), sum);
 	}
 	
 	/*
@@ -136,5 +136,31 @@ public class FindMaxSumSubArray {
 			if(maxSum > 0 && !isNonZeroAvailable) isNonZeroAvailable = true;
 		}
 		return isNonZeroAvailable ? maxSum : negMax;
+	}
+	
+	private int findMaxSumSubArray_Practice(int[] nums) {
+		int tempSum = 0;
+		int maxSum = nums[0];
+		int negSum = Integer.MAX_VALUE;
+		
+		for(int i=0;i<nums.length;i++) {
+			tempSum += nums[i];
+			if(tempSum > maxSum) maxSum = tempSum;
+			if(tempSum < 0) {
+				if(tempSum < negSum) negSum = tempSum;
+				tempSum = 0;
+			}
+		}
+		tempSum = 0;
+		for(int i=nums.length-1;i>=0;i--) {
+			tempSum += nums[i];
+			if(tempSum > maxSum) maxSum = tempSum;
+			if(tempSum < 0) {
+				if(tempSum < negSum) negSum = tempSum;
+				tempSum = 0;
+			}
+		}
+		
+		return maxSum;
 	}
 }
