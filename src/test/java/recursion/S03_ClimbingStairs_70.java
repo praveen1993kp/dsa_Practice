@@ -10,7 +10,7 @@ public class S03_ClimbingStairs_70 {
 	 * PROBLEM STATEMENT 
 	 * 
 	 * 
-	 * 
+	 * Similar to Fibonacci Series
 	 * 
 	 * 
 	 */ 
